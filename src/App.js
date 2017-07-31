@@ -6,6 +6,14 @@ import ListBooks from './ListBooks';
 import './App.css'
 
 export default class BooksApp extends Component {
+  state = {
+    books: []
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => this.setState({ books }));
+  }
+
   render() {
     return (
       <div className="app">
@@ -15,7 +23,11 @@ export default class BooksApp extends Component {
         />
         <Route
           exact path='/'
-          component={ListBooks}
+          render={() => (
+            <ListBooks
+              books={this.state.books}
+            />
+          )}
         />
       </div>
     );
