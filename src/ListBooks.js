@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import BookShelf from './BookShelf';
+import { titleFromCamel } from './utils';
 
 export default class ListBooks extends Component {
 
-  shelves() {
-    const shelfNames = this.props.books.reduce((shelves, book) => {
+  shelfNames() {
+    return this.props.books.reduce((shelves, book) => {
       if (!shelves.includes(book.shelf)) {
         shelves.push(book.shelf)
       }
       return shelves;
     }, []);
+  }
 
-    const byShelfNames = shelfNames.map((name) => {
+  shelves() {
+    return this.shelfNames().map((name) => {
       const books = this.props.books.filter(book => book.shelf === name);
-      let shelfTitle = name.replace(/([A-Z])/g, " $1");
-      shelfTitle = shelfTitle[0].toUpperCase() + shelfTitle.slice(1);
       return {
-        shelfTitle: shelfTitle,
+        shelfTitle: titleFromCamel(name),
         books: books
       }
     });
-
-    return byShelfNames;
   }
 
   render() {
@@ -32,8 +32,19 @@ export default class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            {this.shelves().map((shelf) => <BookShelf shelf={shelf} key={shelf.shelfTitle} />)}
+            {this.shelves().map((shelf) => {
+              return (
+                <BookShelf
+                  shelf={shelf}
+                  key={shelf.shelfTitle}
+                  shelves={this.shelfNames()}
+                />
+              );
+            })}
           </div>
+        </div>
+        <div className="open-search">
+          <Link to='/search'>Add a book</Link>
         </div>
       </div>
     );
