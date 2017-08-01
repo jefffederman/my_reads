@@ -12,3 +12,6 @@ export default function BookCover(props) {
     ></div>
   );
 }
+
+// PropTypes
+// thumbnail

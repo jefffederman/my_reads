@@ -11,7 +11,11 @@ export default function BookShelf(props) {
           {books.map((book) => {
             return (
               <li key={book.id}>
-                <Book book={book} shelves={props.shelves} />
+                <Book
+                  book={book}
+                  shelves={props.shelves}
+                  onShelfChange={props.onShelfChange}
+                />
               </li>
             );
           })}
@@ -20,3 +24,6 @@ export default function BookShelf(props) {
     </div>
   );
 }
+
+// PropTypes
+// shelf, shelves

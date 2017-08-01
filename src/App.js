@@ -10,8 +10,16 @@ export default class BooksApp extends Component {
     books: []
   }
 
-  componentDidMount() {
+  updateBook(book, shelf) {
+    BooksAPI.update(book, shelf).then(() => this.getBooks())
+  }
+
+  getBooks() {
     BooksAPI.getAll().then((books) => this.setState({ books }));
+  }
+
+  componentDidMount() {
+    this.getBooks();
   }
 
   render() {
@@ -26,6 +34,7 @@ export default class BooksApp extends Component {
           render={() => (
             <ListBooks
               books={this.state.books}
+              onShelfChange={this.updateBook.bind(this)}
             />
           )}
         />

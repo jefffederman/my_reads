@@ -38,6 +38,7 @@ export default class ListBooks extends Component {
                   shelf={shelf}
                   key={shelf.shelfTitle}
                   shelves={this.shelfNames()}
+                  onShelfChange={this.props.onShelfChange}
                 />
               );
             })}
