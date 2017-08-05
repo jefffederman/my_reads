@@ -5,17 +5,8 @@ import { titleFromCamel } from './utils';
 
 export default class ListBooks extends Component {
 
-  shelfNames() {
-    return this.props.books.reduce((shelves, book) => {
-      if (!shelves.includes(book.shelf)) {
-        shelves.push(book.shelf)
-      }
-      return shelves;
-    }, []);
-  }
-
   shelves() {
-    return this.shelfNames().map((name) => {
+    return this.props.shelfNames.map((name) => {
       const books = this.props.books.filter(book => book.shelf === name);
       return {
         shelfTitle: titleFromCamel(name),
@@ -37,7 +28,7 @@ export default class ListBooks extends Component {
                 <BookShelf
                   shelf={shelf}
                   key={shelf.shelfTitle}
-                  shelves={this.shelfNames()}
+                  shelves={this.props.shelfNames}
                   onShelfChange={this.props.onShelfChange}
                 />
               );
