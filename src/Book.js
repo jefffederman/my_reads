@@ -4,8 +4,10 @@ import BookShelfChanger from './BookShelfChanger';
 
 export default function Book(props) {
   const { book } = props;
-  const { imageLinks, title, authors } = book;
-  const { thumbnail } = imageLinks;
+  const { imageLinks, title, authors} = book;
+  let thumbnail, authorString;
+  if (imageLinks) thumbnail = imageLinks.thumbnail;
+  if (authors) authorString = authors.join(', ');
   return (
     <div className="book">
       <div className="book-top">
@@ -17,7 +19,7 @@ export default function Book(props) {
       />
       </div>
       <div className="book-title">{title}</div>
-      <div className="book-authors">{authors.join(', ')}</div>
+      <div className="book-authors">{authorString}</div>
     </div>
   );
 }
