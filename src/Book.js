@@ -25,8 +25,13 @@ export default function Book(props) {
   );
 }
 
-// TODO: shapeOf
 Book.propTypes = {
-  book: PropTypes.object.isRequired,
+  book: PropTypes.shape({
+    imageLinks: PropTypes.shape({
+      thumbnail: PropTypes.string
+    }),
+    title: PropTypes.string.isRequired,
+    authors: PropTypes.arrayOf(PropTypes.string)
+  }).isRequired,
   shelves: PropTypes.array.isRequired
 };

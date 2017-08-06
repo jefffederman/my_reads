@@ -26,8 +26,12 @@ export default function BookShelf(props) {
   );
 }
 
-// TODO: shapeof for shelf
 BookShelf.propTypes = {
-  shelf: PropTypes.object.isRequired,
+  shelf: PropTypes.shape({
+    shelfTitle: PropTypes.string.isRequired,
+    books: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string
+    }))
+  }).isRequired,
   shelves: PropTypes.array.isRequired
 }

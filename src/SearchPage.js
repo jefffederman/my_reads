@@ -42,7 +42,9 @@ export default function SearchPage(props) {
 
 SearchPage.propTypes = {
   searchBooks: PropTypes.func.isRequired,
-  searchResults: PropTypes.array.isRequired,
+  searchResults: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired
+  })).isRequired,
   onShelfChange: PropTypes.func.isRequired,
   shelfNames: PropTypes.array.isRequired
 }

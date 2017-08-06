@@ -45,5 +45,9 @@ export default class ListBooks extends Component {
 }
 
 ListBooks.propTypes = {
-  books: PropTypes.array.isRequired
+  books: PropTypes.arrayOf(PropTypes.shape({
+    shelf: PropTypes.string.isRequired
+  })).isRequired,
+  onShelfChange: PropTypes.func.isRequired,
+  shelfNames: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };

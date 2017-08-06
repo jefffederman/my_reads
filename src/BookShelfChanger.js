@@ -34,5 +34,7 @@ export default class BookShelfChanger extends Component {
 
 BookShelfChanger.propTypes = {
   shelves: PropTypes.array.isRequired,
-  book: PropTypes.object.isRequired
+  book: PropTypes.shape({
+    shelf: PropTypes.string.isRequired
+  }).isRequired
 };
