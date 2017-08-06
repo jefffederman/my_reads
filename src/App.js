@@ -28,12 +28,28 @@ export default class BooksApp extends Component {
     BooksAPI.getAll().then((books) => this.setState({ books }));
   }
 
+  setShelves(searchResults) {
+    const booksData = this.state.books.map(book => (
+      { id: book.id, shelf: book.shelf }
+    ));
+    searchResults.forEach((book) => {
+      const match = booksData.filter(data => data.id === book.id)[0]
+      if (match) {
+        book.shelf = match.shelf;
+      }
+    });
+    return searchResults;
+  }
+
   searchBooks(e) {
     e.preventDefault();
-    if (e.target.value.length > 1) {
-      BooksAPI.search(e.target.value, 20).then((searchResults) => {
-        this.setState({ searchResults });
-      });
+    if (e.target.value.length) {
+      BooksAPI.search(e.target.value, 20).then((results) => {
+        if (results && !results.error) {
+          const searchResults = this.setShelves(results);
+          this.setState({ searchResults });
+        }
+      }).catch((error) => console.log(error));
     }
   }
 
