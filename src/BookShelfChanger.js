@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { titleFromCamel } from './utils';
 
 export default class BookShelfChanger extends Component {
@@ -31,5 +32,7 @@ export default class BookShelfChanger extends Component {
   }
 }
 
-// PropTypes
-// shelves
+BookShelfChanger.propTypes = {
+  shelves: PropTypes.array.isRequired,
+  book: PropTypes.object.isRequired
+};

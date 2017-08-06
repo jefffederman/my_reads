@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function BookCover(props) {
   return (
@@ -16,5 +17,6 @@ export default function BookCover(props) {
   );
 }
 
-// PropTypes
-// thumbnail
+BookCover.propTypes = {
+  thumbnail: PropTypes.string
+};

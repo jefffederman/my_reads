@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import BookShelf from './BookShelf';
 import { titleFromCamel } from './utils';
 
@@ -43,5 +44,6 @@ export default class ListBooks extends Component {
   }
 }
 
-// PropTypes
-// books
+ListBooks.propTypes = {
+  books: PropTypes.array.isRequired
+};

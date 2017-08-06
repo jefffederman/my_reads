@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BookCover from './BookCover';
 import BookShelfChanger from './BookShelfChanger';
 
@@ -24,5 +25,8 @@ export default function Book(props) {
   );
 }
 
-// PropTypes
-// book, shelves
+// TODO: shapeOf
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  shelves: PropTypes.array.isRequired
+};

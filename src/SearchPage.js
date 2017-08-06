@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Book from './Book';
 
 export default function SearchPage(props) {
@@ -37,4 +38,11 @@ export default function SearchPage(props) {
       </div>
     </div>
   );
+}
+
+SearchPage.propTypes = {
+  searchBooks: PropTypes.func.isRequired,
+  searchResults: PropTypes.array.isRequired,
+  onShelfChange: PropTypes.func.isRequired,
+  shelfNames: PropTypes.array.isRequired
 }
